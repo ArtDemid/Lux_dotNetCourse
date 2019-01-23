@@ -13,11 +13,12 @@ namespace HW_2
             int height = 0;
             int selection = 0;
             int menuItem = 0;
+            string u_str = "";
             ConsoleKeyInfo input;
 
             do
             {
-                Console.WriteLine("1 - Manual selection\n2 - Auto selection\n");
+                Console.WriteLine("1 - Manual selection\n2 - Auto selection\n3 - Polindrom\n4 - Is String Valid");
                 Int32.TryParse(Console.ReadLine(), out menuItem);
                 switch (menuItem)
                 {
@@ -50,6 +51,38 @@ namespace HW_2
                         {
                             Console.WriteLine("Wrong argument");
                         }
+                        break;
+                    case 3:
+                        Console.WriteLine("Input string for verification:");
+                        u_str = Console.ReadLine();
+                        char[] u_str_char = new char[u_str.Length];
+                        u_str_char = u_str.ToCharArray();
+                        string v_str = "";
+                        for (int i = u_str_char.Length-1; i >= 0; i--)
+                        {
+                            v_str = v_str + u_str[i];
+                        }
+                        if (v_str == u_str)
+                        {
+                            Console.WriteLine("This line is polindrom");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not polindrom");
+                        }
+                        break;
+                    case 4:
+                        Console.WriteLine("Input string for verification:");
+                        u_str = Console.ReadLine();
+                        if (StringValidator(u_str))
+                        {
+                            Console.WriteLine("Valid");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid");
+                        }
+
                         break;
                     default:
                         Console.WriteLine("Wrong selection");
@@ -87,5 +120,13 @@ namespace HW_2
                     break;
             }
         }
+
+        static bool StringValidator(string input)
+        {
+            bool result = false;
+            result = input.All(Char.IsLetter);
+            return result;
+        }
+
     }
 }
